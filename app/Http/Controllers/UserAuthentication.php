@@ -16,7 +16,6 @@ class UserAuthentication extends Controller
      */
     public function index(Request $request)
     {
-     
     }
 
     /**
@@ -42,7 +41,7 @@ class UserAuthentication extends Controller
         // Check if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors(), 'message' => "Error in user data", 'success' => false
+                'errors' => $validator->errors(), 'success' => false
             ], 422); // Return 422 Unprocessable Entity status code for validation errors
         }
 
@@ -62,7 +61,8 @@ class UserAuthentication extends Controller
             //     $mail->to($username)->subject('Test Email');
             // });
             return response()->json([
-                'message' => 'Congratulations! Your account has been created successfully.' . $message, 'user' => $username
+                'message' => 'Congratulations! Your account has been created successfully.' . $message, 'user' => $username,
+                'success' => true
             ], 201);
         } else {
             return response()->json([
@@ -70,7 +70,7 @@ class UserAuthentication extends Controller
                 'success' => false
             ], 500);
         }
-        return response()->json(['message' => 'Internal server error'], 500);
+        return response()->json(['message' => 'Internal server error', 'success' => false], 500);
     }
 
     /**

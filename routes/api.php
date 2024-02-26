@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserAuthentication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/user-signup', [UserAuthentication::class, 'create']);
+Route::post('/user-signin', [UserAuthentication::class, 'show']);
+Route::post('/user-forget', [UserAuthentication::class, 'edit']);
+Route::post('/user-update', [UserAuthentication::class, 'update']);
+
+// Route::post('/task-register/username','');
+// Route::get('/task-completed/username','');
+// Route::post('/task-history/username','');
+// Route::post('/task-pending/username','');
